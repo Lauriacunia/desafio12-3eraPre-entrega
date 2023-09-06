@@ -4,8 +4,6 @@ let productDao;
 let cartDao;
 let chatDao;
 let userDao;
-let homeDao;
-let authDao;
 
 switch (CONFIG.DATASOURCE) {
   case "MEMORY": {
@@ -19,12 +17,8 @@ switch (CONFIG.DATASOURCE) {
     cartDao = new CartMongoDao();
     const { ChatMongoDao } = await import("./mongo/chat.mongo.dao.js");
     chatDao = new ChatMongoDao();
-    const { HomeMongoDao } = await import("./mongo/home.mongo.dao.js");
-    homeDao = new HomeMongoDao();
     const { UserMongoDao } = await import("./mongo/user.mongo.dao.js");
     userDao = new UserMongoDao();
-    const { AuthMongoDao } = await import("./mongo/auth.mongo.dao.js");
-    authDao = new AuthMongoDao();
     break;
   }
   default: {
@@ -39,9 +33,7 @@ const getDAOS = () => {
     productDao,
     cartDao,
     chatDao,
-    homeDao,
     userDao,
-    authDao,
   };
 };
 

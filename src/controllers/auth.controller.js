@@ -36,7 +36,6 @@ class AuthController {
   }
   async logout(req, res) {
     // Hace logout y elimina la sesión del usuario autenticado
-    console.log("req.logout", req.logout);
     req.logout(function (err) {
       if (err) {
         // Maneja el error de logout
