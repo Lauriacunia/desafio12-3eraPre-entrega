@@ -10,14 +10,20 @@ import {
   deleteOneProductOfCart,
   deleteAllProductsOfCart,
 } from "../../controllers/cart.controller.js";
+import { isAuth, isUser } from "../../middleware/auth.js";
 
 router.post("/", create);
 router.get("/", getAll);
-router.get("/:idCart/products", getProductsOfCart);
-router.get("/:idCart", viewCartDetail);
-router.put("/:idCart/products/:idProduct", addProductToCart);
-router.put("/:idCart", updateAllProductsOfCart);
-router.delete("/:idCart/products/:idProduct", deleteOneProductOfCart);
-router.delete("/:idCart", deleteAllProductsOfCart);
+router.get("/:idCart/products", isAuth, getProductsOfCart);
+router.get("/:idCart", isAuth, isUser, viewCartDetail);
+router.put("/:idCart/products/:idProduct", isAuth, isUser, addProductToCart);
+router.put("/:idCart", isAuth, isUser, updateAllProductsOfCart);
+router.delete(
+  "/:idCart/products/:idProduct",
+  isAuth,
+  isUser,
+  deleteOneProductOfCart
+);
+router.delete("/:idCart", isAuth, isUser, deleteAllProductsOfCart);
 
 export default router;

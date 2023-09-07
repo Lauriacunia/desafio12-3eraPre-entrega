@@ -12,8 +12,6 @@ export class BaseService {
   }
 
   async getOne(id) {
-    console.log("getOne service base. id: ", id);
-    console.log("this.dao: ", this.dao);
     try {
       const one = await this.dao.getOne(id);
       return one;

@@ -7,7 +7,6 @@ class CartController {
     /**Crea un carrito vacío de productos.
      * No le envío body->creo un carrito a partir del schema.
      */
-    console.log("cart controller");
     try {
       const cartCreated = await cartService.create();
       cartCreated

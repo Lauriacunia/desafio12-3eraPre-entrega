@@ -26,7 +26,6 @@ class ProductController {
   }
 
   async getOne(req, res) {
-    console.log("getOne controller. id: ", req.params.id);
     try {
       const id = req.params.id;
       const product = await productService.getOne(id);
