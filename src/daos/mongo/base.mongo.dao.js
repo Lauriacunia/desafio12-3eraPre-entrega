@@ -12,6 +12,7 @@ export default class BaseMongoDao {
   }
 
   async getOne(id) {
+    console.log("getOne dao base. id: ", id);
     try {
       const one = await this.db.findById(id);
       return one;

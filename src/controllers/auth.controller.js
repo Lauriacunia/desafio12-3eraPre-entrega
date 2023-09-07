@@ -23,6 +23,9 @@ class AuthController {
   }
 
   async getCurrentUser(req, res) {
+    /**No consulta a la DB, sino que obtiene el user del req
+     * (passport lo guarda en el req luego del login)
+     */
     try {
       const user = await req.user;
       const userDTO = new userDTOResponse(user);

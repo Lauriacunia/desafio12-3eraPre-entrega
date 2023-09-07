@@ -5,8 +5,8 @@ import { Strategy as LocalStrategy } from "passport-local";
 // passport-github2
 import { Strategy as GitHubStrategy } from "passport-github2";
 import { encryptPassword, comparePassword } from "../config/bcrypt.js";
-import getDAOS from "../daos/daos.factory.js";
-const { userDao, cartDao } = getDAOS();
+// import getDAOS from "../daos/daos.factory.js";
+// const { userDao, cartDao } = getDAOS();
 
 const localStrategy = LocalStrategy;
 const githubStrategy = GitHubStrategy;

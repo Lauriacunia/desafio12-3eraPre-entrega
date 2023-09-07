@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  viewAll,
+  getAll,
   create,
   getOne,
   update,
@@ -11,7 +11,7 @@ import { validateRequest } from "../../middleware/validators.js";
 const router = Router();
 
 /**Rutas */
-router.get("/", viewAll);
+router.get("/", getAll);
 router.get("/:id", getOne);
 router.post("/", validateRequest, create);
 router.put("/:id", validateRequest, update);
