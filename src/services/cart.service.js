@@ -1,6 +1,6 @@
 import { BaseService } from "./base.service.js";
 import getDAOS from "../daos/daos.factory.js";
-const { cartDao, productDao } = getDAOS();
+const { cartDao, ticketDao, userDao } = getDAOS();
 
 export class CartService extends BaseService {
   constructor() {
@@ -42,6 +42,30 @@ export class CartService extends BaseService {
     try {
       const cartUpdated = await cartDao.emptyCart(cart);
       return cartUpdated;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  async purchaseCart(cart) {
+    try {
+      const amount = cart.products.reduce((acc, product) => {
+        return acc + product._id.price * product.quantity;
+      }, 0);
+      const purchaser_email = await userDao.getPurchaser(cart);
+      const products = cart.products.map((product) => {
+        return {
+          product: product._id._id,
+          quantity: product.quantity,
+        };
+      });
+      const ticket = await ticketDao.create({
+        purchaser: purchaser_email,
+        amount: amount,
+        products: products,
+      });
+      const tickedCreated = await ticketDao.getOne(ticket._id);
+      return tickedCreated;
     } catch (err) {
       throw new Error(err);
     }

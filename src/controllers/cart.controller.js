@@ -188,6 +188,24 @@ class CartController {
       res.status(500).json({ message: err.message, line: err.line });
     }
   }
+
+  async purchaseCart(req, res) {
+    console.log("purchaseCart en cart controller");
+    try {
+      const cart = await cartService.getOne(req.params.idCart);
+      if (cart) {
+        const response = await cartService.purchaseCart(cart);
+        res.status(201).json({
+          status: "success",
+          payload: response,
+        });
+      } else {
+        res.status(404).json({ message: "Missing data" });
+      }
+    } catch (err) {
+      res.status(500).json({ message: err.message, line: err.line });
+    }
+  }
 }
 
 /**Creo una instancia de la clase CartController */
@@ -203,6 +221,7 @@ const {
   updateAllProductsOfCart,
   deleteOneProductOfCart,
   deleteAllProductsOfCart,
+  purchaseCart,
 } = cartController;
 
 /**Exporto los métodos del controlador */
@@ -215,4 +234,5 @@ export {
   updateAllProductsOfCart,
   deleteOneProductOfCart,
   deleteAllProductsOfCart,
+  purchaseCart,
 };

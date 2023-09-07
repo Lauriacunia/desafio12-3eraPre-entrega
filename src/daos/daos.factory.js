@@ -3,6 +3,7 @@ import CONFIG from "../config/config.js";
 let productDao;
 let cartDao;
 let userDao;
+let ticketDao;
 
 switch (CONFIG.DATASOURCE) {
   case "MEMORY": {
@@ -16,6 +17,8 @@ switch (CONFIG.DATASOURCE) {
     cartDao = new CartMongoDao();
     const { UserMongoDao } = await import("./mongo/user.mongo.dao.js");
     userDao = new UserMongoDao();
+    const { TicketMongoDao } = await import("./mongo/ticket.mongo.dao.js");
+    ticketDao = new TicketMongoDao();
     break;
   }
   default: {
@@ -30,6 +33,7 @@ const getDAOS = () => {
     productDao,
     cartDao,
     userDao,
+    ticketDao,
   };
 };
 

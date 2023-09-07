@@ -9,6 +9,7 @@ import {
   updateAllProductsOfCart,
   deleteOneProductOfCart,
   deleteAllProductsOfCart,
+  purchaseCart,
 } from "../../controllers/cart.controller.js";
 import { isAuth, isUser } from "../../middleware/auth.js";
 
@@ -25,5 +26,6 @@ router.delete(
   deleteOneProductOfCart
 );
 router.delete("/:idCart", isAuth, isUser, deleteAllProductsOfCart);
+router.post("/:idCart/purchase", isAuth, isUser, purchaseCart);
 
 export default router;

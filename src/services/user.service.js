@@ -14,4 +14,8 @@ export class UserService extends BaseService {
   async getUserByUsername(username) {
     return await this.dao.getUserByUsername(username);
   }
+
+  async getPurchaser(cart) {
+    return await this.dao.getPurchaser(cart);
+  }
 }
