@@ -1,3 +1,15 @@
+export function isAuth(req, res, next) {
+  /**
+   * req.isAuthenticated() es una función propia de passport que
+   * verifica que el usuario este autenticado.
+   */
+  if (req.isAuthenticated()) {
+    // Si esta autenticado sigue con la ejecucion que queremos
+    return next();
+  }
+  res.redirect("/auth/login");
+}
+
 export function isUser(req, res, next) {
   if (req.session?.user?.email) {
     return next();
